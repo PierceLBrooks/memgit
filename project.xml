@@ -91,57 +91,15 @@
 						<value><install></install>/lib</value>
 					</export>
 					<export type="all">
+					    <key>OPENSSL_ROOT_PATH</key>
+					    <value><install></install></value>
+					</export>
+					<export type="all">
 					    <key>OPENSSL_ROOT_DIR</key>
 					    <value><install></install></value>
 					</export>
 				</exports>
 				<imports></imports>
-			</dependency>
-			<dependency>
-				<label>libssh2</label>
-				<subpath>build</subpath>
-				<remote>
-					<url>https://github.com/PierceLBrooks/libssh2.git</url>
-					<git_repo>
-						<branch>piercelbrooks</branch>
-						<credentials>
-							<username>username</username>
-							<password>password</password>
-						</credentials>
-					</git_repo>
-				</remote>
-				<build>
-					<arguments>
-						<argument>-DCRYPTO_BACKEND=OpenSSL</argument>
-						<argument>-DOPENSSL_FOUND=1</argument>
-						<argument>-DBUILD_EXAMPLES=OFF</argument>
-						<argument>-DBUILD_TESTING=OFF</argument>
-					</arguments>
-					<cmake>
-						<generator>
-							<switch id="BUILDSTER_OS">
-								<case check="Windows">MinGW Makefiles</case>
-								<case check="Linux">Unix Makefiles</case>
-								<case check="Darwin">Unix Makefiles</case>
-								<default><quit></quit></default>
-							</switch>
-						</generator>
-						<source>..</source>
-					</cmake>
-				</build>
-				<exports>
-					<export type="headers">
-						<key>LIBSSH_INCLUDE_PATH</key>
-						<value><install></install>/include</value>
-					</export>
-					<export type="libraries">
-						<key>LIBSSH_LIBRARIES</key>
-						<value><install></install>/lib</value>
-					</export>
-				</exports>
-				<imports>
-					<import>openssl</import>
-				</imports>
 			</dependency>
 			<dependency>
 				<label>libgit2</label>
@@ -157,7 +115,14 @@
 					</git_repo>
 				</remote>
 				<build>
-					<arguments></arguments>
+					<arguments>
+					    <argument>-DBUILD_SHARED_LIBS=OFF</argument>
+					    <argument>-DBUILD_CLAR=OFF</argument>
+					    <argument>-DUSE_BUNDLED_ZLIB=ON</argument>
+						<argument>-DCRYPTO_BACKEND=OpenSSL</argument>
+						<argument>-DBUILD_EXAMPLES=OFF</argument>
+						<argument>-DBUILD_TESTING=OFF</argument>
+					</arguments>
 					<cmake>
 						<generator>
 							<switch id="BUILDSTER_OS">
@@ -179,10 +144,49 @@
 						<key>LIBGIT_LIBRARIES</key>
 						<value><install></install>/lib</value>
 					</export>
+                    <export type="headers">
+						<key>LIBSSH_INCLUDE_PATH</key>
+						<value><install></install>/include</value>
+					</export>
+					<export type="headers">
+						<key>LIBSSH_INCLUDE_DIR</key>
+						<value><install></install>/include</value>
+					</export>
+					<export type="headers">
+						<key>LIBSSH2_INCLUDE_PATH</key>
+						<value><install></install>/include</value>
+					</export>
+					<export type="headers">
+						<key>LIBSSH2_INCLUDE_DIR</key>
+						<value><install></install>/include</value>
+					</export>
+					<export type="libraries">
+						<key>LIBSSH_LIBRARIES</key>
+						<value><install></install>/lib</value>
+					</export>
+					<export type="libraries">
+						<key>LIBSSH2_LIBRARIES</key>
+						<value><install></install>/lib</value>
+					</export>
+					<export type="all">
+					    <key>LIBSSH_ROOT_PATH</key>
+					    <value><install></install></value>
+					</export>
+					<export type="all">
+					    <key>LIBSSH2_ROOT_PATH</key>
+					    <value><install></install></value>
+					</export>
+					<export type="all">
+					    <key>LIBSSH_ROOT_DIR</key>
+					    <value><install></install></value>
+					</export>
+					<export type="all">
+					    <key>LIBSSH2_ROOT_DIR</key>
+					    <value><install></install></value>
+					</export>
 				</exports>
 				<imports>
 					<import>openssl</import>
-					<import>libssh2</import>
 				</imports>
 			</dependency>
 		</dependencies>
@@ -194,7 +198,6 @@
 				<exports></exports>
 				<imports>
 					<import>libgit2</import>
-					<import>libssh2</import>
 					<import>openssl</import>
 					<import>vfspp</import>
 				</imports>
