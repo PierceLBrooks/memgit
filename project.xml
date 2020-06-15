@@ -82,9 +82,17 @@
 						<key>OPENSSL_INCLUDE_PATH</key>
 						<value><install></install>/include</value>
 					</export>
+					<export type="headers">
+						<key>OPENSSL_INCLUDE_DIR</key>
+						<value><install></install>/include</value>
+					</export>
 					<export type="libraries">
 						<key>OPENSSL_LIBRARIES</key>
 						<value><install></install>/lib</value>
+					</export>
+					<export type="all">
+					    <key>OPENSSL_ROOT_DIR</key>
+					    <value><install></install></value>
 					</export>
 				</exports>
 				<imports></imports>
@@ -103,7 +111,12 @@
 					</git_repo>
 				</remote>
 				<build>
-					<arguments></arguments>
+					<arguments>
+						<argument>-DCRYPTO_BACKEND=OpenSSL</argument>
+						<argument>-DOPENSSL_FOUND=1</argument>
+						<argument>-DBUILD_EXAMPLES=OFF</argument>
+						<argument>-DBUILD_TESTING=OFF</argument>
+					</arguments>
 					<cmake>
 						<generator>
 							<switch id="BUILDSTER_OS">
@@ -169,7 +182,7 @@
 				</exports>
 				<imports>
 					<import>openssl</import>
-					<import>llibssh2</import>
+					<import>libssh2</import>
 				</imports>
 			</dependency>
 		</dependencies>
