@@ -43,9 +43,21 @@
 						<key>VFSPP_INCLUDE_PATH</key>
 						<value><install></install>/include</value>
 					</export>
+					<export type="headers">
+						<key>VFSPP_INCLUDE_DIR</key>
+						<value><install></install>/include</value>
+					</export>
 					<export type="libraries">
 						<key>VFSPP_LIBRARIES</key>
 						<value><install></install>/lib</value>
+					</export>
+					<export type="all">
+					    <key>VFSPP_ROOT_PATH</key>
+					    <value><install></install></value>
+					</export>
+					<export type="all">
+					    <key>VFSPP_ROOT_DIR</key>
+					    <value><install></install></value>
 					</export>
 				</exports>
 				<imports></imports>
@@ -187,6 +199,7 @@
 				</exports>
 				<imports>
 					<import>openssl</import>
+					<import>vfspp</import>
 				</imports>
 			</dependency>
 		</dependencies>
